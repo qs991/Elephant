@@ -30,11 +30,12 @@
         {
             this.Btn_OpenClient = new System.Windows.Forms.Button();
             this.Btn_OpenService = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Btn_OpenClient
             // 
-            this.Btn_OpenClient.Location = new System.Drawing.Point(130, 206);
+            this.Btn_OpenClient.Location = new System.Drawing.Point(59, 40);
             this.Btn_OpenClient.Name = "Btn_OpenClient";
             this.Btn_OpenClient.Size = new System.Drawing.Size(192, 110);
             this.Btn_OpenClient.TabIndex = 0;
@@ -52,12 +53,23 @@
             this.Btn_OpenService.UseVisualStyleBackColor = true;
             this.Btn_OpenService.Click += new System.EventHandler(this.Btn_OpenService_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(59, 206);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(192, 110);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "打开客服端2";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(880, 552);
             this.Controls.Add(this.Btn_OpenService);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.Btn_OpenClient);
             this.Name = "Form1";
             this.Text = "WebSocket简易聊天室";
@@ -70,6 +82,7 @@
 
         private System.Windows.Forms.Button Btn_OpenClient;
         private System.Windows.Forms.Button Btn_OpenService;
+        private System.Windows.Forms.Button button1;
     }
 }
 

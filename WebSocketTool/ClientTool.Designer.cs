@@ -40,7 +40,7 @@
             // 
             // Btn_SendMessage
             // 
-            this.Btn_SendMessage.Location = new System.Drawing.Point(656, 436);
+            this.Btn_SendMessage.Location = new System.Drawing.Point(656, 432);
             this.Btn_SendMessage.Name = "Btn_SendMessage";
             this.Btn_SendMessage.Size = new System.Drawing.Size(121, 60);
             this.Btn_SendMessage.TabIndex = 0;
@@ -90,7 +90,7 @@
             // 
             // tb_sendMessage
             // 
-            this.tb_sendMessage.Location = new System.Drawing.Point(12, 423);
+            this.tb_sendMessage.Location = new System.Drawing.Point(12, 415);
             this.tb_sendMessage.Multiline = true;
             this.tb_sendMessage.Name = "tb_sendMessage";
             this.tb_sendMessage.Size = new System.Drawing.Size(627, 104);

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -32,6 +33,12 @@ namespace WebSocketTool
         {
             ServiceTool serviceTool = new ServiceTool();
             serviceTool.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ClientTool clientTool = new ClientTool();
+            clientTool.Show();
         }
     }
 }

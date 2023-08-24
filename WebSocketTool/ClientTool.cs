@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,7 +30,9 @@ namespace WebSocketTool
         /// <param name="e"></param>
         private void ClientTool_Load(object sender, EventArgs e)
         {
-
+ 
+            string ip = Dns.GetHostEntry(Dns.GetHostName()).AddressList[7].ToString();
+            this.tb_Servicepath.Text = ip;
         }
         /// <summary>
         /// 加入聊天室
@@ -63,7 +66,7 @@ namespace WebSocketTool
                     int recLength = client.Receive(arrList);
                     if (recLength > 0)
                     {
-                        this.tb_Recivemessage.AppendText($"\r\n{DateTime.Now.ToString()},{Encoding.UTF8.GetString(arrList, 0, recLength)}");
+                        this.tb_Recivemessage.AppendText($"\r\n{DateTime.Now.ToString()},{client.RemoteEndPoint.ToString()}:,{Encoding.UTF8.GetString(arrList, 0, recLength)}");
                     }
                 }
                 catch (Exception ee)

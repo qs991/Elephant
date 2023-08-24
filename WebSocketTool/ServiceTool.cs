@@ -107,7 +107,7 @@ namespace WebSocketTool
                         //获取客服端端口号
                         IPEndPoint endpoint = client.RemoteEndPoint as IPEndPoint;
                         //服务器显示客服端端口号和消息
-                        tb_Recivemessage.AppendText($"\r\n{DateTime.Now.ToString()}{endpoint.Port.ToString()}:{recMsg}");
+                        tb_Recivemessage.AppendText($"\r\n{DateTime.Now.ToString()},{endpoint.Port.ToString()}:{recMsg}");
                         //服务端发送接收到的消息到客服端
                         SendMsg($"{endpoint.Port.ToString()}:{recMsg}");
                     }
