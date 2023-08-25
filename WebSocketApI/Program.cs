@@ -22,7 +22,7 @@ service.AddCors(options =>
         corsbuilder.WithOrigins(corsPath)
         .AllowAnyMethod()
         .AllowAnyHeader()
-        .AllowCredentials();//指定处理cookie
+        .AllowCredentials();//指定处理cookie  
     });
 });
 
