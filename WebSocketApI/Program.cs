@@ -1,9 +1,30 @@
-var builder = WebApplication.CreateBuilder(args);
+using WebSocketApI;
+using Autofac.Extensions.DependencyInjection;
+
+var builder = WebApplication.CreateBuilder(args).Inject();//注入Furion
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var service = builder.Services;
+
+service.AddMvc();
+
+string anyAllowSpecificOrigins = "any";//解决跨域
+//解决跨域
+service.AddCors(options =>
+{
+    options.AddPolicy(anyAllowSpecificOrigins, corsbuilder =>
+    {
+        var corsPath = builder.Configuration.GetSection("CorsPaths").GetChildren().Select(p => p.Value).ToArray();
+        corsbuilder.WithOrigins(corsPath)
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials();//指定处理cookie
+    });
+});
 
 var app = builder.Build();
 
@@ -13,30 +34,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+//添加websocket中间件
 
-var summaries = new[]
+app.UseInject();//注入Furion
+app.UseCorsAccessor();//
+app.UseWebSockets(new WebSocketOptions()
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
+    KeepAliveInterval = TimeSpan.FromSeconds(60),
+    ReceiveBufferSize = 1024 * 1024
+});
+app.UseMiddleware<WebSocketMiddleHandler>();
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
