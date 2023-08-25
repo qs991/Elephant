@@ -19,7 +19,7 @@ service.AddCors(options =>
     options.AddPolicy(anyAllowSpecificOrigins, corsbuilder =>
     {
         var corsPath = builder.Configuration.GetSection("CorsPaths").GetChildren().Select(p => p.Value).ToArray();
-        corsbuilder.WithOrigins(corsPath)
+        corsbuilder.WithOrigins(corsPath) 
         .AllowAnyMethod()
         .AllowAnyHeader()
         .AllowCredentials();//指定处理cookie  
