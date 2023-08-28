@@ -26,7 +26,7 @@ service.AddCors(options =>
     });
 });
 
-var app = builder.Build();
+var app = builder.Build(); 
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
