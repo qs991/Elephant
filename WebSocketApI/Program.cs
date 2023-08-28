@@ -24,7 +24,7 @@ service.AddCors(options =>
         .AllowAnyHeader()
         .AllowCredentials();//指定处理cookie  
     });
-});  
+});   
 
 var app = builder.Build();  
 
